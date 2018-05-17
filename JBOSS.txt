@@ -1,0 +1,43 @@
+To Install JBoss On Ubuntu
+
+Java installation and verification
+
+ Download JBoss and install
+
+	$ wget http://download.jboss.org/jbossas/7.1/jboss-as-7.1.1.Final/jboss-as-7.1.1.Final.zip
+
+	$ sudo unzip jboss-as-7.1.1.Final.zip -d /usr/share/
+
+ Create the appropriate user for the Jboss NAD give sudo previleges n enable passwd authentication
+	
+	$ sudo adduser javaserver
+
+	sudo chown -fR jboss.jboss /usr/share/jboss-as-7.1.1.Final/
+
+Switch user:
+	$ su javaserver
+	
+	$ cd /usr/share/jboss-as-7.1.1.Final/bin
+	$ ./add-user.sh
+
+After issuing above command you will see the following messages :
+
+What type of user do you wish to add?
+a) Management User (mgmt-users.properties)
+b) Application User (application-users.properties)
+(a): a
+
+We select a, next you should see the following message:
+
+Enter the details of the new user to add.
+Realm (ManagementRealm) :
+Username : javaserver
+Password :
+Re-enter Password :
+* hit enter for Realm to use default, then provide a username and password
+
+Start the JBoss server and verify that the server has started properly
+
+	$ ./standalone.sh -Djboss.bind.address=54.245.201.162 -Djboss.bind.address.management=54.245.201.162&
+
+	http://localhost:9990   --> iN BROWSER CHANGE LOCALHOST WITH ur IP
